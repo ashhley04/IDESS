@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 5: Monitoring & Lifelong Learning</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #4CAF50; /* Green background */
+            padding: 30px;
+            margin: 0;
+            color: #333;
+            animation: fadeIn 1s ease-out; /* Fade in background */
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff; /* White text for header */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: slideInTop 1s ease-out; /* Slide in header */
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff; /* White background for the form */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease-in-out;
+            animation: fadeInUp 1s ease-out forwards; /* Fade and slide up */
+        }
+
+        .form-container:hover {
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #4CAF50;
+            text-align: center;
+            animation: slideInTop 1s ease-out; /* Slide in heading */
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.5s forwards; /* Fade in button with delay */
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Analytics Section */
+        .analytics {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart {
+            width: 100%;
+            height: 400px; /* Adjusted height for better visibility */
+            margin: 20px 0;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d1e7dd;
+            border: 1px solid #badbcc;
+            border-radius: 8px;
+            color: #0f5132;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Stage 5: Monitoring & Lifelong Learning</h1>
+    <div class="form-container">
+        <h3>Track Your Progress Automatically</h3>
+        <button type="button" class="btn" onclick="generateAIProgress()">Generate AI Progress</button>
+
+        <div class="entries" id="entries-container">
+            <!-- Dynamic entries will be added here -->
+        </div>
+
+        <div class="analytics">
+            <h3>Your Analytics Dashboard</h3>
+            <canvas id="skills-chart" class="chart"></canvas>
+            <canvas id="job-chances-chart" class="chart"></canvas>
+            <div class="feedback" id="ai-feedback">AI Feedback: Your resume is strong, but consider improving your technical skills to increase your chances of landing a job.</div>
+        </div>
+    </div>
+
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Array to store progress and feedback
+        let entries = [];
+
+        // Function to simulate AI-generated progress and feedback
+        function generateAIProgress() {
+            // Simulate generating progress and feedback
+            const progressOptions = [
+                "Completed a project on AI.",
+                "Gained proficiency in Python programming.",
+                "Completed a data analysis course.",
+                "Participated in a hackathon and won 2nd place.",
+                "Attended a workshop on machine learning."
+            ];
+
+            const feedbackOptions = [
+                "Great progress, keep it up!",
+                "You are making good strides in your learning.",
+                "Consider focusing on your communication skills.",
+                "Your technical skills are improving significantly.",
+                "A solid performance; consider more teamwork experiences."
+            ];
+
+            // Randomly select progress and feedback
+            const randomProgress = progressOptions[Math.floor(Math.random() * progressOptions.length)];
+            const randomFeedback = feedbackOptions[Math.floor(Math.random() * feedbackOptions.length)];
+
+            // Create a new entry object
+            const newEntry = {
+                progress: randomProgress,
+                applicationFeedback: randomFeedback,
+                date: new Date().toLocaleString()
+            };
+
+            // Push the new entry to the entries array
+            entries.push(newEntry);
+
+            // Update the displayed entries
+            displayEntries();
+        }
+
+        // Function to display the dynamic entries
+        function displayEntries() {
+            const entriesContainer = document.getElementById('entries-container');
+            entriesContainer.innerHTML = ''; // Clear existing entries
+
+            // Loop through each entry and display it
+            entries.forEach((entry, index) => {
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('entry');
+                entryDiv.innerHTML = `
+                    <h4>Entry ${index + 1} - ${entry.date}</h4>
+                    <p><strong>Progress:</strong> ${entry.progress}</p>
+                    <p><strong>Feedback:</strong> ${entry.applicationFeedback}</p>
+                `;
+                entriesContainer.appendChild(entryDiv);
+            });
+        }
+
+        // Function to render charts using Chart.js
+function renderCharts() {
+    // Skills Analysis Chart
+    const skillsCtx = document.getElementById('skills-chart').getContext('2d');
+    const skillsChart = new Chart(skillsCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Python', 'Data Analysis', 'Machine Learning', 'Communication', 'Teamwork', 'Web Development', 'Cloud Computing', 'Cybersecurity'],
+            datasets: [{
+                label: 'Proficiency (1-5)',
+                data: [4, 3, 2, 5, 4, 3, 4, 2],
+                backgroundColor: ['#FFB3BA', '#FFCEBA', '#FFD6A5', '#D9EAD3', '#A0D7E5', '#FF9AA2', '#FFB7B2', '#FF677D'],
+                borderColor: ['#FFB3BA', '#FFCEBA', '#FFD6A5', '#D9EAD3', '#A0D7E5', '#FF9AA2', '#FFB7B2', '#FF677D'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.dataset.label || '';
+                            const value = context.raw || 0;
+                            return `${label}: ${value}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Proficiency Level (1-5)'
+                    }
+                }
+            }
+        }
+    });
+
+    // Job Chances Chart code remains unchanged...
+}
+            // Job Chances Chart with Added Variance
+            const jobChancesCtx = document.getElementById('job-chances-chart').getContext('2d');
+            const data = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Python',
+                        data: [80, 82, 79, 90, 85, 88, 91, 87, 92, 80, 84, 87],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Data Analysis',
+                        data: [70, 75, 72, 68, 73, 70, 68, 65, 70, 72, 71, 74],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Machine Learning',
+                        data: [60, 62, 61, 65, 66, 63, 68, 70, 69, 68, 65, 62],
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Web Development',
+                        data: [50, 52, 51, 53, 55, 54, 56, 58, 57, 59, 58, 60],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Cloud Computing',
+                        data: [40, 42, 41, 40, 39, 43, 44, 45, 46, 48, 47, 49],
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Cybersecurity',
+                        data: [30, 28, 29, 26, 27, 25, 24, 25, 26, 28, 30, 31],
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        fill: false,
+                        tension: 0.1,
+                        borderWidth: 2
+                    }
+                ]
+            };
+            
+            const jobChancesChart = new Chart(jobChancesCtx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.dataset.label || '';
+                                    const value = context.raw || 0;
+                                    return `${label}: ${value}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Market Demand (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        
+
+        // Call renderCharts on page load
+        window.onload = function() {
+            renderCharts();
+        };
+    </script>
+</body>
+</html>

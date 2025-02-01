@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 3: Personal Branding Update</title>
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #333;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .hero-section {
+            margin-bottom: 30px;
+            text-align: center;
+            animation: slideDown 1s ease-in-out;
+        }
+
+        .hero-section h2 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            font-weight: 400;
+            color: white; /* Change the color to white */
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: 600;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #45a049, #2E7D32);
+            transform: scale(1.05);
+        }
+
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            color: #555;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .file-upload-label:hover {
+            background: #e9e9e9;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .next-button {
+            display: none;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <h2>Personal Branding Update</h2>
+        <p>Enhance your online presence and make a lasting impression.</p>
+    </div>
+
+    <div class="container">
+        <h1>Stage 3: Update Your Profile</h1>
+        <p>Complete the form below to update your branding information.</p>
+
+        <form id="brandingForm">
+            <!-- Resume Upload -->
+            <label for="resume">Upload Your Resume (PDF only):</label>
+            <div class="file-upload">
+                <input type="file" id="resume" name="resume" accept=".pdf" required>
+                <label for="resume" class="file-upload-label">Choose a file...</label>
+            </div>
+
+            <!-- Cover Letter Upload -->
+            <label for="cover-letter">Upload Your Cover Letter (PDF only):</label>
+            <div class="file-upload">
+                <input type="file" id="cover-letter" name="cover-letter" accept=".pdf" required>
+                <label for="cover-letter" class="file-upload-label">Choose a file...</label>
+            </div>
+
+            <!-- LinkedIn Profile -->
+            <label for="linkedin">LinkedIn Profile:</label>
+            <input type="url" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn profile link..." required>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn">Submit</button>
+        </form>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            Your information has been submitted successfully! Click "Next" to proceed to Stage 4.
+        </div>
+
+        <!-- Next Button -->
+        <button class="btn next-button" id="nextButton">Next ➡</button>
+    </div>
+
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Include pdf-lib library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+    <script>
+        // Initialize jsPDF
+        const { jsPDF } = window.jspdf;
+
+        // Form submission handling
+        document.getElementById('brandingForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Prevent form submission
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Show the Next button
+            document.getElementById('nextButton').style.display = 'block';
+
+            // Generate the updated resume
+            await generateResume();
+
+            // Reset form after 2 seconds
+            setTimeout(() => {
+                document.getElementById('brandingForm').reset();
+            }, 2000);
+        });
+
+        async function generateResume() {
+            const resumeFile = document.getElementById('resume').files[0];
+            const coverLetterFile = document.getElementById('cover-letter').files[0];
+            const linkedinProfile = document.getElementById('linkedin').value;
+            
+            // Gather additional user input (this can be expanded)
+            const jobTitle = prompt("Enter your Desired Job Title:");
+            const skills = prompt("Enter your Key Skills (comma-separated):");
+            const experience = prompt("Enter your Work Experience (briefly):");
+            const achievements = prompt("Mention any Achievements or Certifications:");
+
+            if (!resumeFile || !coverLetterFile || !linkedinProfile || !jobTitle || !skills || !experience || !achievements) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            // Create a new PDF document
+            const pdfDoc = new jsPDF();
+
+            // Add a title
+            pdfDoc.setFontSize(22);
+            pdfDoc.text("Updated Resume", 20, 30);
+
+            // Add LinkedIn profile
+            pdfDoc.setFontSize(12);
+            pdfDoc.text(`LinkedIn Profile: ${linkedinProfile}`, 20, 50);
+
+            // Resume Section
+            pdfDoc.setFontSize(16);
+            pdfDoc.text("Resume", 20, 70);
+            pdfDoc.setFontSize(12);
+            pdfDoc.text(`Job Title: ${jobTitle}`, 20, 90);
+            pdfDoc.text(`Skills: ${skills}`, 20, 110);
+            pdfDoc.text(`Experience: ${experience}`, 20, 130);
+            pdfDoc.text(`Achievements: ${achievements}`, 20, 150);
+
+            // Cover Letter Section
+            pdfDoc.setFontSize(16);
+            pdfDoc.text("Cover Letter", 20, 170);
+            pdfDoc.setFontSize(12);
+            pdfDoc.text(`Dear Hiring Manager,`, 20, 190);
+            pdfDoc.text(`I am writing to express my interest in the ${jobTitle} position.`, 20, 200);
+            pdfDoc.text(`With skills in ${skills} and a strong background in ${experience},`, 20, 210);
+            pdfDoc.text(`I believe I would be a great fit for your team.`, 20, 220);
+            pdfDoc.text(`Thank you for considering my application.`, 20, 230);
+            pdfDoc.text(`Sincerely,`, 20, 240);
+            pdfDoc.text(`Your Name`, 20, 250);
+
+            // Save the PDF
+            pdfDoc.save("updated_resume.pdf");
+        }
+
+        // Next button functionality
+        document.getElementById('nextButton').addEventListener('click', function () {
+            // Redirect to Stage 4
+            window.location.href = 'stage4.html'; // Make sure to replace 'stage4.html' with the actual path to your Stage 4 file
+        });
+
+        // Update file upload labels to show the selected file name
+        document.querySelectorAll('.file-upload input[type="file"]').forEach(input => {
+            input.addEventListener('change', function () {
+                const label = this.nextElementSibling;
+                if (this.files.length > 0) {
+                    label.textContent = this.files[0].name;
+                } else {
+                    label.textContent = 'Choose a file...';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

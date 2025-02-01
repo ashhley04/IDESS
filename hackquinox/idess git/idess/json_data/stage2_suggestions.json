@@ -1,0 +1,60 @@
+{
+    "suggestions": [
+        {
+            "skill": "Python",
+            "courses": []
+        },
+        {
+            "skill": "Machine Learning",
+            "courses": []
+        }
+    ],
+    "swot_suggestions": [
+        {
+            "section": "Strengths",
+            "suggestions": [
+                "Problem-solving"
+            ]
+        },
+        {
+            "section": "Weaknesses",
+            "suggestions": [
+                "Time management"
+            ]
+        }
+    ],
+    "goals": [
+        "Become a Data Scientist",
+        "Master Machine Learning",
+        "Improve Time Management",
+        "Learn Cloud Computing",
+        "Advance in AI Research"
+    ],
+    "industry_contacts": [
+        {
+            "name": "John Doe",
+            "role": "Data Scientist",
+            "linkedin": "https://www.linkedin.com/in/johndoe/"
+        },
+        {
+            "name": "Jane Smith",
+            "role": "AI Researcher",
+            "linkedin": "https://www.linkedin.com/in/janesmith/"
+        },
+        {
+            "name": "Mike Johnson",
+            "role": "ML Expert",
+            "linkedin": "https://www.linkedin.com/in/mikejohnson/"
+        },
+        {
+            "name": "Alice Brown",
+            "role": "Data Engineer",
+            "linkedin": "https://www.linkedin.com/in/alicebrown/"
+        },
+        {
+            "name": "Sam Green",
+            "role": "Cloud Architect",
+            "linkedin": "https://www.linkedin.com/in/samgreen/"
+        }
+    ]
+}

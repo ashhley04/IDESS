@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 4: Job Preparation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2ecc71; /* Green background */
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .recommendations {
+            margin-top: 40px;
+        }
+        .recommendations h3 {
+            color: #4CAF50;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .recommendation-link {
+            display: block;
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #2980b9;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        .recommendation-link:hover {
+            background-color: #ecf0f1;
+            border-color: #3498db;
+            color: #2980b9;
+            transform: translateY(-3px);
+        }
+        .recommendation-link:focus {
+            outline: none;
+        }
+        .next-button {
+            margin-top: 20px;
+            padding: 14px;
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .next-button:hover {
+            background: linear-gradient(135deg, #45a049, #2E7D32);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Stage 4: Job Preparation</h1>
+    <div class="form-container">
+        <h3>Get Ready for Your Job Interviews</h3>
+        <div class="recommendations">
+            <h3>Recommended Resources for Job Preparation:</h3>
+            <a href="https://www.pramp.com/" target="_blank" class="recommendation-link">Pramp: Free Mock Interviews</a>
+            <a href="https://www.hackerrank.com/domains/tutorials/10-days-of-javascript" target="_blank" class="recommendation-link">HackerRank: Aptitude & Technical Assessments</a>
+            <a href="https://www.geeksforgeeks.org/aptitude/" target="_blank" class="recommendation-link">GeeksforGeeks: Aptitude Tests</a>
+            <a href="https://www.interviewbit.com/mock-interviews/" target="_blank" class="recommendation-link">InterviewBit: Mock Interviews & Interview Preparation</a>
+            <a href="https://www.codingninjas.com/codestudio" target="_blank" class="recommendation-link">Coding Ninjas: Technical Skills Development</a>
+        </div>
+        <!-- Next Button -->
+        <button class="next-button" id="nextButton">Next ➡</button>
+    </div>
+
+    <script>
+        // Next button functionality
+        document.getElementById('nextButton').addEventListener('click', function () {
+            // Redirect to the next stage (replace 'stage5.html' with the actual path)
+            window.location.href = 'stage5.html'; // Make sure to replace 'stage5.html' with the actual path to your next stage file
+        });
+    </script>
+</body>
+</html>

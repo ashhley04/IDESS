@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 1 - Resume Analyzer & SWOT Analysis</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        h2 { text-align: center; }
+        .file-upload { text-align: center; margin: 10px 0; }
+        input[type="file"] { display: none; }
+        .upload-btn { background-color: #007bff; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; }
+        .upload-btn:hover { background-color: #0056b3; }
+        #file-name { margin-top: 10px; font-size: 14px; color: #555; }
+        button { display: block; width: 100%; padding: 10px; margin-top: 10px; border: none; background-color: #28a745; color: white; font-size: 16px; cursor: pointer; border-radius: 5px; }
+        button:hover { background-color: #218838; }
+        #result { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background: #fff; }
+        #error { color: red; text-align: center; margin-top: 10px; }
+        .next-btn { background-color: #007bff; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; width: 100%; margin-top: 20px; }
+        .next-btn:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Resume for Analysis</h2>
+        <form id="resume-form" enctype="multipart/form-data">
+            <div class="file-upload">
+                <label class="upload-btn" for="resume">Upload Resume</label>
+                <input type="file" id="resume" accept=".pdf,.docx,.txt" required>
+                <p id="file-name">No file chosen</p>
+            </div>
+            <button type="submit">Analyze Resume</button>
+        </form>
+        <div id="error"></div>
+        <div id="result"></div>
+
+        <!-- "Next" Button for Stage 2, initially hidden -->
+        <button id="nextButton" class="next-btn" style="display:none;" onclick="moveToStage2()">Next</button>
+    </div>
+
+    <script>
+        // Display the chosen file name
+        document.getElementById("resume").addEventListener("change", function() {
+            let fileName = this.files[0] ? this.files[0].name : "No file chosen";
+            document.getElementById("file-name").textContent = fileName;
+        });
+
+        // Handle resume form submission
+        document.getElementById("resume-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            let fileInput = document.getElementById("resume");
+
+            if (fileInput.files.length === 0) {
+                document.getElementById("error").textContent = "Please upload a resume.";
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("resume", fileInput.files[0]);
+
+            try {
+                // Send request to backend server for resume analysis
+                let response = await fetch("http://127.0.0.1:5000/analyze_resume", { 
+                    method: "POST", 
+                    body: formData 
+                });
+
+                // Handle errors if the response isn't successful
+                if (!response.ok) {
+                    throw new Error(`Server responded with status: ${response.status}`);
+                }
+
+                // Parse the JSON response from the backend
+                let result = await response.json();
+                
+                console.log(result);  // Debugging: Check the response structure
+
+                // Update the UI with extracted information
+                document.getElementById("result").innerHTML = ` 
+                    <h3>Extracted Information</h3>
+                    <p><b>Skills:</b> ${result.skills.join(", ")}</p>
+                    <p><b>Experience:</b> ${result.experience} years</p>
+                    <h3>SWOT Analysis</h3>
+                    <p><b>Strengths:</b> ${result.swot.strengths.join(", ")}</p>
+                    <p><b>Weaknesses:</b> ${result.swot.weaknesses.join(", ")}</p>
+                    <p><b>Opportunities:</b> ${result.swot.opportunities.join(", ")}</p>
+                    <p><b>Threats:</b> ${result.swot.threats.join(", ")}</p>
+                    <h3>Job Suggestions</h3>
+                    <p>${result.job_suggestions}</p>
+                `;
+
+                // Show the "Next" button after displaying the results
+                document.getElementById("nextButton").style.display = "block";
+
+                // Clear any error messages
+                document.getElementById("error").textContent = "";
+
+            } catch (error) {
+                // Display any errors in the UI
+                document.getElementById("error").textContent = "Error: " + error.message;
+            }
+        });
+
+        // Handle moving to Stage 2
+        function moveToStage2() {
+            // Redirect to Stage 2 page
+            window.location.href = "stage2.html";  // Change "/stage2" to the URL where Stage 2 is handled
+        }
+    </script>
+</body>
+</html>

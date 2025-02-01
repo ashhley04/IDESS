@@ -1,0 +1,32 @@
+{
+    "skills": [
+        "Python",
+        "Data Analysis",
+        "Machine Learning",
+        "Deep Learning",
+        "Data Engineering"
+    ],
+    "experience": 2,
+    "swot": {
+        "strengths": [
+            "Problem-solving",
+            "Critical Thinking",
+            "Data Analysis"
+        ],
+        "weaknesses": [
+            "Time management",
+            "Public Speaking"
+        ],
+        "opportunities": [
+            "AI development",
+            "Data Science",
+            "Cloud Computing"
+        ],
+        "threats": [
+            "Automation",
+            "Outsourcing",
+            "Economic downturn"
+        ]
+    },
+    "job_suggestions": "Software Developer, Data Scientist, Data Engineer"
+}

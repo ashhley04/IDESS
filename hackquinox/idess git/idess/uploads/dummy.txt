@@ -1,0 +1,25 @@
+Name: Rahul Sharma
+Email: rahul.sharma@example.com
+Phone: +91 98765 43210
+Location: Mumbai, India
+
+Objective
+Motivated and detail-oriented computer science student with a passion for software development and problem-solving. Looking for an opportunity to learn and grow in a dynamic tech environment.
+
+Education
+Bachelor of Technology (B.Tech) in Computer Science
+XYZ University, Mumbai (2023 – Present)
+
+Skills
+Programming: Python, C, HTML, CSS
+Web Development: Flask, JavaScript (Beginner)
+Database: MySQL (Basic)
+Tools: VS Code, GitHub
+Projects
+Simple Portfolio Website – Built a basic personal website using HTML, CSS, and JavaScript.
+Basic Chatbot in Python – Developed a simple chatbot using Python and Flask.
+Languages
+English (Fluent)
+Hindi (Native)
+Hobbies
+Coding, Learning AI, Reading Tech Blogs

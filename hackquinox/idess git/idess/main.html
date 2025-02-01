@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDESS - Main Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fb;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .stage-box-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stage-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .stage-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .stage-box h3 {
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+
+        .stage-box p {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>IDESS - Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <!-- Stages -->
+        <div class="stage-box-container">
+            <!-- Stage 1 -->
+            <div class="stage-box" onclick="window.location.href='stage1.html'">
+                <h3>Stage 1: Assessment of the Profile</h3>
+                <p>User inputs skills and experience, SWOT analysis, skill analysis, and job suggestions based on existing skill set.</p>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="stage-box" id="stage2" onclick="goToStage('stage2.html')">
+                <h3>Stage 2: Action Development Planning</h3>
+                <p>Suggest improvements, define goals, provide training & certification courses, and identify key industry contacts.</p>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="stage-box" id="stage3" onclick="goToStage('stage3.html')">
+                <h3>Stage 3: Personal Branding Update</h3>
+                <p>Update resumes, cover letter, and LinkedIn profile for better personal branding.</p>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="stage-box" id="stage4" onclick="goToStage('stage4.html')">
+                <h3>Stage 4: Job Preparation</h3>
+                <p>Prepare for jobs with mock interviews, aptitude, and technical tests.</p>
+            </div>
+
+            <!-- Stage 5 -->
+            <div class="stage-box" id="stage5" onclick="goToStage('stage5.html')">
+                <h3>Stage 5: Monitoring & Lifelong Learning</h3>
+                <p>Track progress, review application outcomes, and refine strategies as needed.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 IDESS. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Function to check if the current stage is accessible
+        function checkStageAccess(stageNumber) {
+            // Retrieve progress from localStorage (stage completion status)
+            const stageCompleted = localStorage.getItem(`stage${stageNumber}Completed`);
+            if (stageCompleted === "true") {
+                return true;  // Stage is accessible
+            } else {
+                alert(`Please complete Stage ${stageNumber - 1} first.`);
+                return false;  // Stage is not accessible
+            }
+        }
+
+        // Handle stage redirection based on user progress
+        function goToStage(stageUrl) {
+            const stageNumber = parseInt(stageUrl.replace(/\D/g, '')); // Extract stage number from URL
+            
+            // Prevent direct access to future stages without completing previous ones
+            if (stageNumber === 1 || checkStageAccess(stageNumber)) {
+                window.location.href = stageUrl;
+            }
+        }
+
+        // Check the user progress and enable navigation for stages 2, 3, 4, 5
+        window.onload = function() {
+            // If Stage 1 is completed, enable access to Stage 2
+            if (localStorage.getItem("stage1Completed") === "true") {
+                document.getElementById('stage2').classList.remove('disabled');
+            }
+
+            // If Stage 2 is completed, enable access to Stage 3
+            if (localStorage.getItem("stage2Completed") === "true") {
+                document.getElementById('stage3').classList.remove('disabled');
+            }
+
+            // If Stage 3 is completed, enable access to Stage 4
+            if (localStorage.getItem("stage3Completed") === "true") {
+                document.getElementById('stage4').classList.remove('disabled');
+            }
+
+            // If Stage 4 is completed, enable access to Stage 5
+            if (localStorage.getItem("stage4Completed") === "true") {
+                document.getElementById('stage5').classList.remove('disabled');
+            }
+        }
+    </script>
+</body>
+</html>
